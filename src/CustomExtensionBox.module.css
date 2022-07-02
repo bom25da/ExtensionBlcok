@@ -1,0 +1,36 @@
+.custom_extension_box {
+    width: auto;
+    height: 20px;
+    border: 1.5px solid;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+
+}
+
+.custom_extension_box_left {
+    width: 55;
+}
+.custom_extension_box_right {
+    width: 5;
+}
+
+.cancel_box {
+    width: 15px;
+    height: 15px;
+}
+
+.cancel_box:after {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: "\02DF"; /* use the hex value here... */
+    font-size: 40px; 
+    color: #000;
+    line-height: 30px;
+    text-align: center;
+    margin-left: 5px;
+}
