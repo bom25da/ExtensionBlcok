@@ -1,15 +1,19 @@
 import { useCallback, useEffect, useState } from 'react'
 import styles from './HomeContainer.module.css'
-import stylesBox from './CustomExtensionBox.module.css'
+import stylesBox from './HomeContainer.viewbox.module.css'
 import axios from 'axios'
 import moment from 'moment';
 import "moment/locale/ko";
 
 const HomeContainer = () => {
+    // 전체 확장자 리스트
     const [extension, setExtension] = useState([])
-    const [fixedExtension, setFixedExtension] = useState(['bat', 'cmd', 'com', 'cpl', 'exe', 'scr', 'js'])
-    //const [customExtension, setCustomExtension] = useState([])
+    // 확장자 입력 키워드
     const [keywords, setKeywords] = useState('');
+
+    // 고정 확장자 리스트
+    const fixedExtension = ['bat', 'cmd', 'com', 'cpl', 'exe', 'scr', 'js']
+    // 커스텀 확장자 리스트
     const customExtension = extension.filter((item)=>fixedExtension.includes(item) == false)
 
     // 차단할 확장자 서버에서 불러오는 함수
@@ -18,26 +22,31 @@ const HomeContainer = () => {
         const res = await axios.get("extension/read")
             .catch(error => console.error('this is error' + error));
         
+        // 서버에서 받아온 데이터 전체 확장자 리스트에 id만 배열로 담음
         setExtension(res.data.map(item=>(item.id)))
     }, [])
 
-
+    // 확장자 입력 함수
     const inputExtension = async(ex) => {
 
+        // 객체로 만들어서 넘김
         const param = {id: ex, createDateTime: moment().format('YYYYMMDDHHmmss')}
 
         // call api
         const res = await axios.post("extension/create", param)
             .catch(error => console.error('this is error' + error));
 
+        // 입력한 후 조회함
         getExtension()
     }
 
+    // 확장자 삭제 함수
     const deleteExtension = async(ex) => {
         // call api
         const res = await axios.delete("extension/delete/" + ex)
             .catch(error => console.error('this is error' + error));
-            
+        
+        // 삭제 후 조회함
         getExtension()
     }
 
@@ -53,11 +62,6 @@ const HomeContainer = () => {
         }
     )
 
-    // 텍스트 입력 시 상태 저장
-    const onChangeText = (e) => {
-        setKeywords(e.target.value);
-    };
-
     // 확장자 체크박스에 체크하고 리스팅박스에 출력하는 함수
     const CustomExtensionBox = ({ex}) => {
         return (
@@ -70,8 +74,12 @@ const HomeContainer = () => {
                 </div>
             </div>
         )
-    }
-    
+    }    
+
+    // 텍스트 입력 시 상태 저장
+    const onChangeText = (e) => {
+        setKeywords(e.target.value);
+    };
 
     // 최초 실행 시 db에서 데이터 불러옴
     useEffect(() => {

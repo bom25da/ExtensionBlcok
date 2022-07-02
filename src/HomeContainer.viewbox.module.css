@@ -11,10 +11,10 @@
 }
 
 .custom_extension_box_left {
-    width: 55;
+    flex: 6;
 }
 .custom_extension_box_right {
-    width: 5;
+    flex: 4;
 }
 
 .cancel_box {
@@ -33,4 +33,5 @@
     line-height: 30px;
     text-align: center;
     margin-left: 5px;
+    cursor: pointer;
 }
