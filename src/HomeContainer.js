@@ -113,8 +113,10 @@ const HomeContainer = () => {
                                 alert('이미 등록된 확장자는 추가할 수 없습니다.')
                             }
                             else {
-                                if(keywords.length >= 20) {
+                                if(keywords.length > 20) {
                                     alert('확장자의 최대입력 길이를 초과하였습니다.')
+                                } else if(customExtension.length > 200) {
+                                    alert('고정 커스텀 확장자는 최대 200개까지 추가 가능합니다.')
                                 } else {
                                     inputExtension(keywords)
                                     setKeywords('')
