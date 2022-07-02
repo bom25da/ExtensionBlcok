@@ -78,9 +78,15 @@
     height: 200px;
     border: 1.5px solid;
     border-radius: 5px;
+}
+.center_extension_view_contents_viewbox_count {
+    height: 10px;
+    margin-left: 10px;
+}
+.center_extension_view_contents_viewbox_list {
     display: flex;
+    height: 170px;
     flex-wrap: wrap;
     flex-direction: row;
     overflow: auto;
 }
-

@@ -130,7 +130,12 @@ const HomeContainer = () => {
                     </div>
                     <div className={styles.center_extension_view_contents}>
                         <div className={styles.center_extension_view_contents_viewbox}>
-                            {customExtension.map((list)=>(<CustomExtensionBox ex={list} />))}
+                            <div className={styles.center_extension_view_contents_viewbox_title}>
+                                {customExtension.length}/200
+                            </div>
+                            <div className={styles.center_extension_view_contents_viewbox_list}>
+                                {customExtension.map((list)=>(<CustomExtensionBox ex={list} />))}
+                            </div>
                         </div>
                     </div>
                 </div>
